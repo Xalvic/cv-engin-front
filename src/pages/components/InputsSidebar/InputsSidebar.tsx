@@ -9,6 +9,9 @@ import { RootState, AppDispatch } from "@/store";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
+const token =
+  "XSRF-TOKEN=eyJpdiI6IkRVenhPTlFudU9wWUZZQXNHZk9sTUE9PSIsInZhbHVlIjoicGFKRzhETWVSbXdSdklkaXRPZVJUcW9HV2tyT09LU0g0RmZKK2JLZGdDaWRkTGxWbzVtZ0RMY0MyY251VnlsN2tUTGpIL1J6bG5nSUQrdkk2ckprZmRuZ0NxSHdGNlhXbkRvSGdkWU9sMFhlaXFTa1dGSEJ6S1FqRi9PRU5lcFgiLCJtYWMiOiJkYWU4MzE5ZDkwMmExMTUzNWU1MTQ3ZGVlMjI4MmNkMGJiN2NkNmI0NWZiZjZjNWJiNTcyMmViZTc2Nzc1MjA0IiwidGFnIjoiIn0%3D; cv_engine_session=eyJpdiI6IkZwZzRlTjRUMXdwaVRHdGIzbW9yUWc9PSIsInZhbHVlIjoiZHFQVnhCZDBXNXVjOVR1Z0tJZWRiQnkrWXprZ1NXUzNtQ05pdVpzNE5BaXdhOGttNGtndlZRYWRnNTJUU3E1T292WmNJMkxSa0tKTUZUcWd1QlRkNDZKQUFxVDREZ0NFbER2a1p2K2oyZ1FnRjgzK2dNL2RGdFBhcFVjYWVuN2oiLCJtYWMiOiI2MGZhY2NhNWJkZjRiOWViYjJlODRjOTUzNDcxMTA1Y2YzMWI4OTRkYjQ4NTZiOGM1Y2U2OGNjYTgwN2VjYzVhIiwidGFnIjoiIn0%3D; BHAigE63oK6IjYObS9fyTogtEz8Cmuu0APHRFcWc=eyJpdiI6ImlrbDZvUmxHWTcvT1VpV3JMaklCdlE9PSIsInZhbHVlIjoidnRRdGRIV3JkekN5SzU5SnBGVFBwZTlaVUtDajVWMU1MNXZvaENpbzVESkJmZjZnOVMveG1BcGF6bjhJVldzRTh4NkU0aEZKS2FKMXdjOVZNdFl3cXd0RTYwdCtlSWk5ZlpwL1o5U2p2UkNvZmR3SzBNZFRFRDNUMExWVnhoL3dIYk9NUXM3bnZOc2VnUUNMY29GZFJEb3U5ZmRPVk5jcnB5ZEpNZnJWbHBRUmlncGI3U2RWTldudUN1UEJGQTJSeDc5bXNZNUZhZWVIVDc4UWtCLzRKZVQwSGhYblNhYVhSN2UwUzFUSEVOL1FyckJha2lmMWNJbUlKZy93anlua0NGc2ZSZmtxS1JWcHV3cHIxdjFEaHQ3bDZpNFpJUkh1Zi8vR0lNbkg0dGdZZTA4VlNSWHpCZmRVcFJUZ2ZQRllMWVN4S0MvNWZFQ3RjbDN5T1l5akZCZkxsRTN1YW5ZbWdIaExBdEpQcW1aaTFzakxZck1xcTNSS2g0K2NEd0hPIiwibWFjIjoiNThkNWJmYjc1NzkzZjY4NmZhZDU1MWQzNDdiMDAwNWE1N2EyODkyNGFjNGFlZDcwYmQ3ODBmZWQwMGM0ODJhMSIsInRhZyI6IiJ9";
+
 function InputsSidebar() {
   const dispatch = useDispatch<AppDispatch>();
   const resumeData = useSelector((state: RootState) => state.resumeData);
@@ -29,105 +32,68 @@ function InputsSidebar() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const updateData = (data: any) => {
     console.log(data);
-    setFormData({
-      ...formData,
-      fullname: data.name,
-      headline: data.title,
-      email: data.contacts.email,
-      location: `${data.contacts?.address?.city}, ${data.contacts?.address?.state}, ${data.contacts?.address?.country}`,
-      website: data.contacts.website.split(",")[0].trim(),
-      phone: data.contacts.phone,
-      summary: data.bio,
-    });
-    dispatch(
-      addBasicInfo({
-        ...resumeData,
-        fullname: data.name,
-        headline: data.title,
-        email: data.contacts.email,
-        location: `${data.contacts?.address?.city}, ${data.contacts?.address?.state}, ${data.contacts?.address?.country}`,
-        website: data.contacts.website.split(",")[0].trim(),
-        phone: data.contacts.phone,
-        summary: data.bio,
-        skills: data.skills.split(","),
-      })
-    );
+    // setFormData({
+    //   ...formData,
+    //   fullname: data.name,
+    //   headline: data.title,
+    //   email: data.contacts.email,
+    //   location: `${data.contacts?.address?.city}, ${data.contacts?.address?.state}, ${data.contacts?.address?.country}`,
+    //   website: data.contacts.website.split(",")[0].trim(),
+    //   phone: data.contacts.phone,
+    //   summary: data.bio,
+    // });
+    // dispatch(
+    //   addBasicInfo({
+    //     ...resumeData,
+    //     fullname: data.name,
+    //     headline: data.title,
+    //     email: data.contacts.email,
+    //     location: `${data.contacts?.address?.city}, ${data.contacts?.address?.state}, ${data.contacts?.address?.country}`,
+    //     website: data.contacts.website.split(",")[0].trim(),
+    //     phone: data.contacts.phone,
+    //     summary: data.bio,
+    //     skills: data.skills.split(","),
+    //   })
+    // );
   };
 
-  const getData = async () => {
-    // const url = "../../../../zx.json";
-    // try {
-    //   const response = await fetch(url);
-    //   if (!response.ok) {
-    //     throw new Error(`Response status: ${response.status}`);
-    //   }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const fileInputEvent = (e: any) => {
+    const file = e.target.files[0];
+    if (file) getData(file);
+  };
+  const fileClick = () => {
+    document.getElementById("fileInput")?.click();
+  };
 
-    //   const json = await response.json();
-    //   updateData(json.data);
-    // } catch (error) {
-    //   console.error(error);
-    // }
-    updateData({
-      bio: "Seeking a responsible career opportunity to fully utilize my training and skills, while making an impact on your organization with my unique skills and passion.",
-      contacts: {
-        address: {
-          address_line_1: "Kozhikode, India",
-          address_line_2: "azdfzd",
-          city: "Kozhikode",
-          country: "India",
-          state: "Kerala",
-        },
-        email: "puthukkuddymilan@gmail.com",
-        phone: "9074964661",
-        website:
-          "milan.m64.in, linkedin.com/in/milan-puthukkuddy-308b191a7, github.com/Xalvic",
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const getData = async (file: any) => {
+    console.log(file); 
+    const formData = new FormData();
+
+    formData.append("pdf", file);
+
+    fetch("https://cv-engine.vercel.app/api/api/cv/parse", {
+      method: "POST",
+      headers: {
+        "content-type": "multipart/form-data",
+        Cookie: token,
       },
-      education: {
-        course_name: "Bachelor of Computer Application",
-        description: "University of Calicut",
-        end_date: "1596236400",
-        location: {
-          city: "Kozhikode",
-          state: "kerala",
-        },
-        name: "St. Xavier's Arts & Science College",
-        start_date: "1501497200",
-      },
-      experience: {
-        description:
-          "Created chat bots that can be injected to other websites. Created internal tools for the Company. Created multiple HTML - JS based mobile games.",
-        end_date: "0",
-        location: {
-          city: "Ernakulam",
-          state: "Kerala",
-        },
-        name: "Riafy Technologies Pvt. Ltd.",
-        role: "Front-End Developer",
-        start_date: "1628140800",
-      },
-      interests: "Music, Cooking, Technology",
-      languages:
-        "English : Full Professional Proficiency, Malayalam : Native or Bilingual Proﬁciency, Hindi : Limited Working Proﬁciency",
-      name: "Milan Puthukkudy",
-      skills:
-        "Angular, React, Vue, TypeScript, JavaScript, Sass, Git, Three Js, UI/UX Design, Adobe XD, HTML, CSS",
-      title: "Front-End Developer",
-      projects: {
-        description:
-          "A fully-featured visualization web app that features advanced features like, Realtime Accurate Mesh Collision Detection, Custom translation & scaling and rotation helpers (Gizmos).",
-        end_date: "0",
-        name: "Admaren Tech - Web-Based 3D Visualization App",
-        start_date: "0",
-        website:
-          "https://play.google.com/store/apps/details?id=brain.training.game.music, https://play.google.com/store/apps/details?id=daily.puzzle.word.game, https://play.google.com/store/apps/details?id=jigsaw.games.puzzles, https://play.google.com/store/apps/details?id=city.word.game.smash, https://play.google.com/store/apps/details?id=crossword.games.word.puzzles&hl=en_IN&gl=US, https://tap.exchange",
-      },
-    });
+      credentials: "include", // To include cookies (if required)
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        updateData(data);
+      })
+      .catch((error) => console.error("Error:", error));
   };
 
   return (
     <div className="w-1/4 px-6 py-4 border-r-1 h-screen overflow-y-auto custom-scroll relative">
       <h1 className="text-3xl font-semibold">Basics</h1>
-      <Button onClick={getData} className="upload-button">
+      <input type="file" onChange={fileInputEvent} id="fileInput" />
+      <Button onClick={fileClick} className="upload-button">
         Upload
       </Button>
       <div className="grid gap-4 sm:grid-cols-2 mt-3">

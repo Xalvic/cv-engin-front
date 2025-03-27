@@ -1,2 +1,5 @@
 import Builder from "./Builder";
-export default Builder;
+import Login from "./Login";
+import AuthRedirect from "./AuthRedirect";
+
+export { Builder, Login, AuthRedirect };

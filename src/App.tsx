@@ -1,11 +1,16 @@
 import "./App.css";
-import Builder from "./pages";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthRedirect, Builder, Login } from "./pages";
 
 function App() {
   return (
-    <>
-      <Builder />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Builder />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/auth/callback" element={<AuthRedirect />} />
+      </Routes>
+    </Router>
   );
 }
 
